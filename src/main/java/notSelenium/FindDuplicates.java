@@ -1,3 +1,5 @@
+package notSelenium;
+
 import java.util.*;
 
 public class FindDuplicates {
