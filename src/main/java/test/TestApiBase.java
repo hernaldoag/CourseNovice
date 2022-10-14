@@ -2,15 +2,18 @@ package test;
 
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
-//import org.apache.log4j.Logger;
+import org.apache.log4j.Logger;
 import java.io.IOException;
 import java.lang.reflect.Method;
 import utilities.ApiUtility;
-import org.apache.logging.log4j;
+import org.apache.logging.log4j.core.*;
+import java.io.IOException;
+import java.lang.reflect.Method;
+import java.util.HashMap;
 
 
 
-public class TestApiBase {
+public class TestApiBase extends TestBase{
     final static Logger log = Logger.getLogger(TestApiBase.class);
 
     protected ApiUtility apiUtility;

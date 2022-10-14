@@ -1,32 +1,40 @@
 package reports;
 
+import miscellaneous.Constants;
 import org.openqa.selenium.WebDriver;
 import org.testng.ITestContext;
 import org.testng.ITestResult;
-import utilities.DateUtility;
 import org.testng.TestListenerAdapter;
-import java.util.logging.Logger;
+import org.testng.annotations.Test;
+import test.TestApiBase;
+import test.TestBase;
+import test.TestHybridBase;
+import test.TestUiBase;
+import utilities.DateUtility;
+//import java.util.logging.Logger;
+import org.apache.log4j.Logger;
+import utilities.DriverUtility;
 
 
 
-public class CustomListener {
-
+public class CustomListener extends TestListenerAdapter {
+   // final static Logger logger = Logger.getLogger(TestListenerAdapter.class);
     @Override
     public void onFinish(ITestContext testContext) {
-        Logger.info("PASSED TEST CASES");
+        //Logger.info("PASSED TEST CASES");
         testContext.getPassedTests().getAllResults()
                 .forEach(result -> {
-                    Logger.info(result.getName());
+          //          Logger.info(result.getName());
                 });
 
-        Logger.info("FAILED TEST CASES");
+        //Logger.info("FAILED TEST CASES");
         testContext.getFailedTests().getAllResults()
                 .forEach(result -> {
-                    Logger.info(result.getName());
+          //          Logger.info(result.getName());
                 });
 
-        LOGGER.info(
-                "Test completed on: " + testContext.getEndDate().toString());
+        //LOGGER.info(
+               // "Test completed on: " + testContext.getEndDate().toString());
     }
 
     public void onTestFailure(ITestResult iTestResult) {
@@ -42,9 +50,9 @@ public class CustomListener {
             WebDriver driver = null;
             if (currentClass instanceof TestHybridBase)
                 driver = ((TestHybridBase) currentClass).getDriver();
-            else if (currentClass instanceof TestUiBase)
-                driver = ((TestUiBase) currentClass).getDriver();
-            DriverUtility.takeScreeenShot(driver, ((TestBase) currentClass).getTestCaseName() + "_" + DateUtility.getCurrentDate(Constants.Formats.fileFormat));
+            //else if (currentClass instanceof TestUiBase)
+              //  driver = ((TestUiBase) currentClass).getDriver();
+            //DriverUtility.takeScreeenShot(driver, ((TestBase) currentClass).getTestCaseName() + "_" + DateUtility.getCurrentDate(Constants.Formats.fileFormat));
         }
 
     }

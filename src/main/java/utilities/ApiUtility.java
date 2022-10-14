@@ -1,7 +1,14 @@
 package utilities;
 
 import java.io.IOException;
-
+import javax.ws.rs.core.MediaType;
+import org.glassfish.jersey.*;
+import com.sun.jersey.api.client.Client;
+import com.sun.jersey.api.client.ClientResponse;
+import com.sun.jersey.api.client.WebResource;
+import org.codehaus.jackson.map.DeserializationConfig;
+import org.codehaus.jackson.map.ObjectMapper;
+import org.codehaus.jackson.map.annotate.JsonSerialize;
 public class ApiUtility {
     public ApiUtility(){}
 
