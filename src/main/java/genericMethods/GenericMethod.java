@@ -21,8 +21,20 @@ public class GenericMethod {
             return this.driver.findElement(By.id(locator));
         }
         else if(type.equals("xpath")){
-            System.out.println("Element found with id" +  locator);
+            System.out.println("Element found with xpath" +  locator);
             return this.driver.findElement(By.xpath(locator));
+        }
+        else if(type.equals("css")){
+            System.out.println("Element found with cssSelector" +  locator);
+            return this.driver.findElement(By.cssSelector(locator));
+        }
+        else if(type.equals("linktext")){
+            System.out.println("Element found with linkText" +  locator);
+            return this.driver.findElement(By.linkText(locator));
+        }
+        else if(type.equals("partiallinktext")){
+            System.out.println("Element found with partiallinktext" +  locator);
+            return this.driver.findElement(By.partialLinkText(locator));
         }
 
         else {
@@ -41,7 +53,18 @@ public class GenericMethod {
             System.out.println("Element found with xpath: " +  locator);
             return this.driver.findElements(By.xpath(locator));
         }
-
+        else if(type.equals("css")){
+            System.out.println("Element found with cssSelector" +  locator);
+            return this.driver.findElements(By.cssSelector(locator));
+        }
+        else if(type.equals("linktext")){
+            System.out.println("Element found with linkText" +  locator);
+            return this.driver.findElements(By.linkText(locator));
+        }
+        else if(type.equals("partiallinktext")){
+            System.out.println("Element found with partiallinktext" +  locator);
+            return this.driver.findElements(By.partialLinkText(locator));
+        }
         else {
             System.out.println("Locator type not supported");
             return null;
