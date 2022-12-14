@@ -13,11 +13,15 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.ashot.AShot;
 import ru.yandex.qatools.ashot.Screenshot;
+import ru.yandex.qatools.ashot.comparison.ImageDiff;
+import ru.yandex.qatools.ashot.comparison.ImageDiffer;
 import ru.yandex.qatools.ashot.coordinates.WebDriverCoordsProvider;
 import ru.yandex.qatools.ashot.shooting.ShootingStrategies;
 
 import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -25,6 +29,7 @@ public class ScreeshotAsTest {
     WebDriver driver;
     String baseUrl = "https://www.softwaretestinghelp.com/";
     String ElementURL = "https://opensource-demo.orangehrmlive.com/";
+    String compareURL = "https://www.naukri.com/nlogin/login";
 
     @BeforeMethod
     public void setUp(){
@@ -99,10 +104,11 @@ public class ScreeshotAsTest {
 
 
     @Test
-    public void takeScreenshotWebElement() throws  Exception {
+    public void takeScreenshotWebElement() throws Exception {
         driver.get(ElementURL);
         //Testing webpage
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);   //for Implicit wait
+        //driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);   //for Implicit wait
+        Thread.sleep(2000);
 
         WebElement uname = driver.findElement(By.xpath("//*[@id=\"app\"]/div[1]/div/div[1]/div/div[2]/div[2]/form/div[1]/div/div[2]/input"));      //Username....ID....
         uname.sendKeys("Admin");
@@ -132,5 +138,37 @@ public class ScreeshotAsTest {
         ImageIO.write(Screenshot_webele.getImage(),"png",new File("C:\\Users\\hernaldo.alvarez\\Documents\\JavaCourse\\justDemoing\\CourseNovice\\src\\screenshots\\element.jpeg"));
 
         System.out.println("Screenshot for specified element captured successfully!");
+    }
+
+    @Test
+    public void takeScreenshotWebElementCompare() throws  Exception {
+        driver.get(compareURL);
+        Thread.sleep(2000);
+        //driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        //WebElement logo = driver.findElement(By.xpath("//a[@class='nI-gNb-header__logo nI-gNb-company-logo']/img"));
+        WebElement logo = driver.findElement(By.xpath("//*[@class='col s12']/img"));
+        Screenshot logoSrcshot = new AShot().takeScreenshot(driver, logo);
+
+        // Reading the image for comparision
+
+        BufferedImage expectedImage = ImageIO.read(new File("C:\\Users\\hernaldo.alvarez\\Documents\\JavaCourse\\justDemoing\\CourseNovice\\src\\screenshots\\register.png"));
+        BufferedImage actualImage = logoSrcshot.getImage();
+        Thread.sleep(1500);
+        ImageDiffer img_differnece = new ImageDiffer();
+
+        // Creating ImageDiffer object and calling the method makeDiff()
+
+        ImageDiff difference = img_differnece.makeDiff(actualImage, expectedImage);
+
+        if (difference.hasDiff() == true)        //Checking the difference using in-built functions)
+        {
+
+            System.out.println("The logo images are different"); //in case when no difference found
+        }
+
+        else
+        {
+            System.out.println("Both logo images matched"); //in case when difference found
+        }
     }
 }

@@ -1,6 +1,5 @@
-import genericMethods.GenericMethod;
+import genericMethods.GenericMethodOld;
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -17,14 +16,14 @@ public class GenericMethodDemo {
 
     private String baseURL;
 
-    private GenericMethod gm;
+    private GenericMethodOld gm;
 
     @BeforeMethod
     public void setUp(){
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
         baseURL = "https://courses.letskodeit.com/practice";
-        gm = new GenericMethod(driver);
+        gm = new GenericMethodOld(driver);
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
