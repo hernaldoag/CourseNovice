@@ -52,12 +52,7 @@ public class SauceLoginPOM {
     public void testLoginMethod()throws Exception{
         driver.get(demoURL);
         LoginPage.LogIn(driver, "standard_user","secret_sauce");
-        //LoginPage.usernameTextField(driver).sendKeys("standard_user");
-        //LoginPage.passwordTextField(driver).sendKeys("password");
-        //LoginPage.LoginButton(driver);
-        //LoginPage.clickOnLoginButton(driver);
         System.out.println("User is logged in");
-        //driver.get(demoInventory);
         InventoryPage.addToCartSLBackPack(driver);
         InventoryPage.clickAddToCartSLBackPack(driver);
         Thread.sleep(10);
@@ -69,7 +64,6 @@ public class SauceLoginPOM {
         CartPage.clickCheckoutButton(driver);
         Thread.sleep(10);
         CheckoutStepOnePage.FillInAndContinue(driver, "herny", "sanchez", "90210");
-
         System.out.println("first check out completed");
         Thread.sleep(100);
         CheckoutStepTwoPage.clickFinish(driver);
