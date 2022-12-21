@@ -2,6 +2,7 @@ package screenshots;
 
 import java.io.File;
 import java.io.IOException;
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
@@ -31,9 +32,9 @@ public class ScreenshotEntirePage
         WebDriverManager.chromedriver().setup();
         WebDriver drv = new ChromeDriver();
         drv.manage().window().maximize();//always write wait code after this
-        drv.manage().timeouts().pageLoadTimeout(10, TimeUnit.SECONDS); //for page load
+        drv.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(10)); //for page load
         drv.get("https://www.softwaretestinghelp.com/");                          //Testing webpage
-        drv.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);  //for Implicit wait
+        drv.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));  //for Implicit wait
 
         WebElement auto = drv.findElement(By.xpath("//ul[@id='mega-menu-primary']/li[6]"));
         //li[@id='mega-menu-item-82200']
