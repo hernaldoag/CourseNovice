@@ -46,4 +46,20 @@ public class WaitTypeDemo {
         //driver.findElement(By.id("email")).sendKeys("test");
 
     }
+
+    @Test
+    public void whenReadyTest(){
+        driver.get(baseURl);
+        //driver.findElement(By.xpath("//*[@id=\"navbar-inverse-collapse\"]/div/div/a")).click();
+        WebElement loginLink = driver.findElement(By.linkText("SIGN IN"));
+        loginLink.click();
+
+
+        //WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(3));
+        WebElement emailFields = wt.waitForElement(By.id("email"), 3);
+        emailFields.sendKeys("test");
+        wt.clickWhenReady(By.name("commit"),3);
+        //driver.findElement(By.id("email")).sendKeys("test");
+
+    }
 }
